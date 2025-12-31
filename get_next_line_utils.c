@@ -1,41 +1,40 @@
 #include "get_next_line.h"
 
-char	*root(int fd, char *buf, int bytes_read, int *i)
+char	*root(char *buf, int bytes_read, int *i)
 {
-	static char	*sub_str[1024];
+	static char	*sub_str;
 	char		*temp;
 	char		*ans;
 	int			find_endl;
 
-	temp = join(sub_str[fd], buf);
+	temp = join(sub_str, buf);
 	if (!temp)
 		return (NULL);
 	find_endl = check_endl(temp);
 	if (find_endl == -1)
 	{
 		if (!bytes_read)
-			return (help_with_root(i, temp, sub_str, fd));
-		free(sub_str[fd]);
-		sub_str[fd] = temp;
+			return (ans = help_root(i, temp, sub_str), sub_str = NULL, ans);
+		free(sub_str);
+		sub_str = temp;
 		return (NULL);
 	}
-	if (sub_str[fd])
-		free(sub_str[fd]);
-	sub_str[fd] = help_with_endl2(find_endl, temp);
+	if (sub_str)
+		free(sub_str);
+	sub_str = help_with_endl2(find_endl, temp);
 	*i = 0;
 	ans = help_with_endl1(find_endl, temp);
 	free(temp);
 	return (ans);
 }
 
-char	*help_with_root(int *i, char *temp, char *sub_str[], int fd)
+char	*help_root(int *i, char *temp, char *sub_str)
 {
 	char	*ans;
 
 	*i = 0;
 	ans = temp;
-	free(sub_str[fd]);
-	sub_str[fd] = NULL;
+	free(sub_str);
 	if (ans && ans[0] == '\0')
 		return (free(ans), NULL);
 	return (ans);

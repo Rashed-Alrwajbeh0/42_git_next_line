@@ -68,9 +68,9 @@ char	*get_next_line(int fd)
 		if (bytes_that_read == -1)
 			return (free(temp), NULL);
 		if (!bytes_that_read)
-			return (free(temp), root(fd, NULL, 0, &i));
+			return (free(temp), root(NULL, 0, &i));
 		temp[bytes_that_read] = '\0';
-		ans = root(fd, temp, bytes_that_read, &i);
+		ans = root(temp, bytes_that_read, &i);
 	}
 	free(temp);
 	return (ans);
