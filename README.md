@@ -39,7 +39,7 @@ To run it, use:
 - [File Descriptors Explained](https://youtu.be/KM5sRWAYqaw?si=_fmoQGkOGI1P1Cwt)
 - [read() Function Explanation](https://pubs.opengroup.org/onlinepubs/009604599/functions/read.html)
 
-## AI Usage
+### AI Usage
 
 AI tools were used to:
 - Fix syntax and grammar errors in this README file
